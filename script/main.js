@@ -1,5 +1,5 @@
-window.sortedBenches=[];
-window.benchNum=0;
+window.peopleList=[];
+window.personNum=0;
 
 
 function initialize() {
@@ -16,7 +16,7 @@ function initialize() {
 
 
 
-function addBench(){
+function addPerson(){
 
   if (navigator.geolocation){
   	//console.log(navigator.geolocation);
@@ -62,12 +62,12 @@ function addBench(){
 				};
 				
 				helper.searchDocuments(
-					null, "benches", function(resp){
+					null, "people", function(resp){
 						var k=0; // En variabel som ökar vid varje "distanserad bänk"
 						for (var i=0; i<resp.outputData.length; i++){
-								var bench = new google.maps.LatLng(resp.outputData[i].lat_coords, resp.outputData[i].lng_coords);
+								var person = new google.maps.LatLng(resp.outputData[i].lat_coords, resp.outputData[i].lng_coords);
 								
-								if (getDistance(user,bench)>30){ //Ska vi köra tio meter?
+								if (getDistance(user,person)>30){ //Ska vi köra tio meter?
 									k=k+1;
 								}
 						}
@@ -75,28 +75,28 @@ function addBench(){
 							add(dataObject);
 						}
 						else{
-							alert("Bänken har INTE lagts till pga att det finns en redan inlagd bänk i vår databas")
+							alert("Du står för nära någon annan, FLYTTA PÅ DIG!")
 						}
 					});
 				
 				};
 		function add(dataObject){
-			helper.insertDocument("benches", dataObject, null, function(resp) {
-				alert("Banken finns nu i var databas. Tack sa mycket!");
+			helper.insertDocument("people", dataObject, null, function(resp) {
+				alert("Du är nu gömd!");
 			});
 			};  
 	}
 };
 
-function rotate(degrees) {
+function resize(dist) {
 	
-	$("#arrow").css({ 
-		'-webkit-transform': 'rotate('+degrees+'deg)',
-		'-moz-transform': 'rotate('+degrees+'deg)',
-		'-o-transform': 'rotate('+degrees+'deg)',
-		'-ms-transform': 'rotate('+degrees+'deg)',
-		'transform': 'rotate('+degrees+'deg)' 
-		});
+/*	$("#arrow").css({ 
+		'-webkit-transform': 'resize('+degrees+'deg)',
+		'-moz-transform': 'resize('+degrees+'deg)',
+		'-o-transform': 'resize('+degrees+'deg)',
+		'-ms-transform': 'resize('+degrees+'deg)',
+		'transform': 'resize('+degrees+'deg)' 
+		});*/
 }
 
 function getDistance(){
@@ -112,13 +112,7 @@ function getDistance(){
   	}
 
   	function showPosition(position){
-	if (window.DeviceOrientationEvent){
-	window.addEventListener('deviceorientation', function(eventData) {
-	  var dir = eventData.alpha
-	$('#testing').text(dir);
-	rotate(dir);
-	}, false);
-	}
+
 
 	
 	
@@ -144,53 +138,39 @@ function getDistance(){
 		};
 		
 		helper.searchDocuments(
-			null, "benches", function(resp){
+			null, "people", function(resp){
 			for (var i = 0; i < resp.outputData.length; i++){
-				var bench_LatLng = new google.maps.LatLng(resp.outputData[i].lat_coords, resp.outputData[i].lng_coords);
-				var dist = getDistanceBetween(my_LatLng, bench_LatLng);
-				window.sortedBenches[i]={"distance":dist, "lat_coords":resp.outputData[i].lat_coords,"lng_coords":resp.outputData[i].lng_coords, "my_LatLng":my_LatLng, "bench_LatLng":bench_LatLng};
-				
-				
-				
-				console.log(heading);
-				
-			}
-				window.sortedBenches.sort(function(a, b){
-				    return a.distance - b.distance;
-				});
-				console.log(window.sortedBenches);
-				var heading = google.maps.geometry.spherical.computeHeading(window.sortedBenches[window.benchNum].bench_LatLng,
-				      window.sortedBenches[window.benchNum].my_LatLng);
-			
-				$("#distance").html(window.sortedBenches[window.benchNum].distance.toFixed(2));
-				rotate(heading);
+				var person_LatLng = new google.maps.LatLng(resp.outputData[i].lat_coords, resp.outputData[i].lng_coords);
+				var dist = getDistanceBetween(my_LatLng, person_LatLng);
+				window.peopleList[i]={"distance":dist, "lat_coords":resp.outputData[i].lat_coords,"lng_coords":resp.outputData[i].lng_coords, "my_LatLng":my_LatLng, "person_LatLng":person_LatLng};				
+			}			
+				$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
+				//resize(heading);
 			
 			}
 		);
 	}	
 }
-function newBench(){
-	if(window.benchNum<parseInt(window.sortedBenches.length-1)){
+function newPerson(){
+	if(window.personNum<parseInt(window.peopleList.length-1)){
 		
-		window.benchNum=window.benchNum+1;
-		var heading = google.maps.geometry.spherical.computeHeading(window.sortedBenches[window.benchNum].bench_LatLng,
-		      window.sortedBenches[window.benchNum].my_LatLng);
-		$("#distance").html(window.sortedBenches[window.benchNum].distance.toFixed(2));
-		alert(heading);
-		rotate(heading);
+		window.personNum=window.personNum+1;
+
+		$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
+
+//		resize(heading);
 	}
 	else{
-		alert("No more benches!");
+		alert("Inga fler gömda");
 	}
 };
-function oldBench(){
-	if(window.benchNum!=0){
-		window.benchNum=window.benchNum-1;
-		var heading = google.maps.geometry.spherical.computeHeading(window.sortedBenches[window.benchNum].bench_LatLng,window.sortedBenches[window.benchNum].my_LatLng);
-		$("#distance").html(window.sortedBenches[window.benchNum].distance.toFixed(2));	
-		rotate(heading);
-		alert(heading);	
+function oldPerson(){
+	if(window.personNum!=0){
+		window.personNum=window.personNum-1;
+		$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));	
+		//resize(heading);
+		
 	}else{
-		alert("This is the bench closest to you!")
+		alert("Swipe:a inte, det finns inga fler!")
 	}	
 };
