@@ -89,14 +89,19 @@ function addPerson(){
 };
 
 function resize(dist) {
+	var size=(100/(1+dist*0.1));
+	console.log(size);
 	
-/*	$("#arrow").css({ 
-		'-webkit-transform': 'resize('+degrees+'deg)',
+	$("#arrow").css({ 
+		'width' : size+'%',
+		'height' : size+'%'
+	
+	/*	'-webkit-transform': 'resize('+degrees+'deg)',
 		'-moz-transform': 'resize('+degrees+'deg)',
 		'-o-transform': 'resize('+degrees+'deg)',
 		'-ms-transform': 'resize('+degrees+'deg)',
-		'transform': 'resize('+degrees+'deg)' 
-		});*/
+		'transform': 'resize('+degrees+'deg)' */
+		});
 }
 
 function getDistance(){
@@ -145,7 +150,7 @@ function getDistance(){
 				window.peopleList[i]={"distance":dist, "lat_coords":resp.outputData[i].lat_coords,"lng_coords":resp.outputData[i].lng_coords, "my_LatLng":my_LatLng, "person_LatLng":person_LatLng};				
 			}			
 				$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
-				//resize(heading);
+				resize(window.peopleList[window.personNum].distance.toFixed(2));
 			
 			}
 		);
@@ -158,7 +163,7 @@ function newPerson(){
 
 		$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
 
-//		resize(heading);
+		resize(window.peopleList[window.personNum].distance.toFixed(2));
 	}
 	else{
 		alert("Inga fler gömda");
@@ -168,7 +173,7 @@ function oldPerson(){
 	if(window.personNum!=0){
 		window.personNum=window.personNum-1;
 		$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));	
-		//resize(heading);
+		resize(window.peopleList[window.personNum].distance.toFixed(2));
 		
 	}else{
 		alert("Swipe:a inte, det finns inga fler!")
