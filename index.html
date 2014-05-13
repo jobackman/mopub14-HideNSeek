@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+		<!-- Cloudbase -->
+	<script type="text/javascript" charset="utf-8" src="script/js/CBHelper/md5.js"></script>
+	<script type="text/javascript" charset="utf-8" src="script/js/CBHelper/json.js"></script>
+	<script type="text/javascript" charset="utf-8" src="script/js/CBHelper/CBXMLHttpRequest.js"></script>
+	<script type="text/javascript" charset="utf-8" src="script/js/CBHelper/CBHelper.js"></script>
+	<script type="text/javascript" charset="utf-8" src="script/js/CBHelper/platforms/MoSyncHelper.js"></script>
+	<script type="text/javascript" charset="utf-8" src="script/js/CBHelper/platforms/GenericHelper.js"></script>
+
+    
+    	<!-- Google Maps API V3-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJd9s0q7Ac8IGZ7AXzYT3dpfplXxgEVpA&sensor=true&libraries=geometry"></script>
+    
+    	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="script/style.css">
+   
+		<!-- jQuery-->
+	<script src="https://code.jquery.com/jquery.js"></script>  
+ 
+    	<!-- jQueryMobile-->
+    <link rel="stylesheet" href="script/jqMobile/jquery.mobile-1.4.2.min.css">
+    <script src="script/jqMobile/jquery.mobile-1.4.2.min.js"></script>
+        
+
+
+  </head>
+  
+  <body onload="initialize()">
+  	
+  		<!-- Load the Map -->
+    <script src="script/main.js" type="text/javascript"></script>
+
+
+  
+	<div data-role="page" id="home">
+	
+		<div data-role="header">		
+	  		<h1>Bench Press</h1>
+			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right" onclick="rotate()">Home</a>
+		</div><!-- header -->
+	
+		<h1>B€NCH PR€$$</h1>
+	  	<div class="row">
+		  	<div class="col-md-4">
+		    	<a href="#page-x" onclick="getDistance()"><button type="submit"> Bench Press! </button></a>
+		    	<button type="submit" onclick="addBench()"> Add bench!</button>
+		  	</div>
+	  	</div>
+	  	<div id="map-canvas"></div>
+	</div>
+	
+		<!-- MALL FÖR KOMPASS -->
+  	<div data-role="page" id="page-x">
+		<script>
+
+
+
+
+			 $.mobile.defaultPageTransition = "none";
+			    $.mobile.defaultDialogTransition = "none";
+
+				$('#page-x').on("swipeleft", function() {
+			//	$('#arrow').hide("slide",{direction:"left"},1000);
+			//	$('#arrow').show("slide",{direction:"left"},1000);	
+				newBench();
+				});
+				$('#page-x').on("swiperight", function() {
+				oldBench();
+				});
+			</script>
+  		
+	  	<div data-role="header">		
+	  		<h1>Bench Press</h1>
+			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right">Home</a>
+		</div><!-- header -->
+	  	
+	  	<div data-role="content">
+	  		<img src="img/arrow.png" id="arrow" onclick="getDistance()" draggable="false">
+			<h1>Distance: <b id="distance"> xx </b>m </h1>	
+			<div id="testing">Testing-lista: </div>
+  		</div><!-- Content -->
+  	
+  	</div><!-- Page x -->
+  	
+  <!-- /MALL FÖR KOMPASS -->
+
+
+  </body>
+</html>
