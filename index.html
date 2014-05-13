@@ -40,15 +40,15 @@
 	<div data-role="page" id="home">
 	
 		<div data-role="header">		
-	  		<h1>Bench Press</h1>
-			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right" onclick="rotate()">Home</a>
+	  		<h1>Hide N Seek!</h1>
+			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right" >Home</a>
 		</div><!-- header -->
 	
-		<h1>B€NCH PR€$$</h1>
+		<h1>Hide N Seek!</h1>
 	  	<div class="row">
 		  	<div class="col-md-4">
 		    	<a href="#page-x" onclick="getDistance()"><button type="submit"> Bench Press! </button></a>
-		    	<button type="submit" onclick="addBench()"> Add bench!</button>
+		    	<button type="submit" onclick="addPerson()"> Add bench!</button>
 		  	</div>
 	  	</div>
 	  	<div id="map-canvas"></div>
@@ -56,23 +56,17 @@
 	
 		<!-- MALL FÖR KOMPASS -->
   	<div data-role="page" id="page-x">
-		<script>
+		<script> 
+			$.mobile.defaultPageTransition = "none";
+			$.mobile.defaultDialogTransition = "none";
 
-
-
-
-			 $.mobile.defaultPageTransition = "none";
-			    $.mobile.defaultDialogTransition = "none";
-
-				$('#page-x').on("swipeleft", function() {
-			//	$('#arrow').hide("slide",{direction:"left"},1000);
-			//	$('#arrow').show("slide",{direction:"left"},1000);	
-				newBench();
-				});
-				$('#page-x').on("swiperight", function() {
-				oldBench();
-				});
-			</script>
+			$('#page-x').on("swipeleft", function() {
+				newPerson();
+			});
+			$('#page-x').on("swiperight", function() {
+				oldPerson();
+			});
+		</script>
   		
 	  	<div data-role="header">		
 	  		<h1>Bench Press</h1>
