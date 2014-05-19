@@ -9,9 +9,35 @@ function initialize() {
 	};
 	var map = new google.maps.Map(document.getElementById("map-canvas"),
 	    mapOptions);
+}
+
+
+function updateGames() {
+var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
+helper.setPassword(hex_md5("mopub_14"));
+	$("#activeSeekGames").empty();
+	$("#activeHideGames").empty();
 	
+helper.searchDocuments(
+	{"alias": $("#alias").val()}	, "people", function(resp_p){
+if(resp_p.callStatus && resp_p.outputData.length==0){
+		
+		
+helper.searchDocuments(
+	null, "games", function(resp){
+		for (var i = 0; i<resp.outputData.length; i++){
+			$("#activeSeekGames").append("<option value='"+resp.outputData[i].reference+"'>"+resp.outputData[i].game+"</option>");
+			$("#activeHideGames").append("<option value='"+resp.outputData[i].reference+"'>"+resp.outputData[i].game+"</option>");
+		}
+	});
+}else{
+	$("#hiddenGame").append("<p>Game:"+resp_p.outputData[0].game+"</p>")
+	document.location.href="#page-hidden";
+}
+});
 
 }
+
 function checkAlias(){
 	var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
 	helper.setPassword(hex_md5("mopub_14"));
@@ -58,7 +84,8 @@ function addPerson(alias){
 		var dataObject = {
 			"lat_coords" : position.coords.latitude,
 			"lng_coords" : position.coords.longitude,
-			"alias" : alias
+			"alias" : alias,
+			"game": $("#activeHideGames :selected").text()
 		};
 		
 		search(dataObject);
@@ -85,7 +112,7 @@ function addPerson(alias){
 				
 				console.log("ska lägga till");
 				helper.searchDocuments(
-					null, "people", function(resp){
+					{"game":$("#activeHideGames :selected").text()}, "people", function(resp){
 						var k=0; // En variabel som ökar vid varje "distanserad bänk"
 						for (var i=0; i<resp.outputData.length; i++){
 							if(resp.outputData[i].length==0){
@@ -109,6 +136,7 @@ function addPerson(alias){
 				
 				};
 		function add(dataObject){
+			console.log("ska adda");
 			helper.insertDocument("people", dataObject, null, function(resp) {
 				document.location.href="#page-hidden";
 			});
@@ -122,7 +150,7 @@ function deletePerson() {
 	new_object={};
 	helper.updateDocument(new_object, {"alias":$("#alias").val()}, "people",null, function(resp){
 	
-			alert("Removed");
+			document.location.href="#home";
 		});
 }
 function resize(dist) {
@@ -182,7 +210,7 @@ function getDistance(){
 		};
 		
 		helper.searchDocuments(
-			null, "people", function(resp){
+			{game:$("#activeSeekGames :selected").text()}, "people", function(resp){
 				var k=0;
 			for (var i = 0; i < resp.outputData.length; i++){
 				if(resp.outputData[i].length==0){
@@ -195,11 +223,59 @@ function getDistance(){
 				}
 			}			
 				//$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
+				if (window.peopleList[window.personNum] != undefined){
 				resize(window.peopleList[window.personNum].distance.toFixed(2));
+				}else{
+					alert("NO");
+					document.location.href="#home";
+				}
 			
 			}
 		);
 	}	
+}
+
+
+
+function createGame(){
+
+	var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
+	helper.setPassword(hex_md5("mopub_14"));
+	
+if ($("#gameName").val().length==0){
+	alert("Plesae enter at name,... ffs")
+}else{
+	helper.searchDocuments(
+		{"game":$("#gameName").val()}, "people", function(resp){
+			if (resp.outputData.length == 0){
+				
+				var ref= $("#gameName").val().split(" ");
+				var reference;
+				for (var i = 0;i<ref.length;i++){
+					if (i == 0){
+						reference=ref[i];
+					}else{
+			
+					 reference=reference+"_"+ref[i];
+					
+					}
+				}
+				game={
+					"game":$("#gameName").val(),
+					"reference":reference
+				}
+				
+				helper.insertDocument("games", game, null, function(resp) {
+					alert("The game is now created");
+					document.location.href="#home";
+				});
+			}
+			
+		});
+			
+			
+	
+}
 }
 function newPerson(){
 	if(window.personNum<parseInt(window.peopleList.length-1)){
