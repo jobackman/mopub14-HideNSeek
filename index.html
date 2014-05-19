@@ -47,8 +47,10 @@
 		<h1>Hide N Seek!</h1>
 	  	<div class="row">
 		  	<div class="col-md-4">
-		    	<a href="#page-x" onclick="getDistance()"><button type="submit"> Bench Press! </button></a>
-		    	<button type="submit" onclick="addPerson()"> Add bench!</button>
+			<input placeholder="Your alias" id="alias"> </input>
+		    	<a href="#page-x" onclick="getDistance()"><button type="submit"> SEEK! </button></a>
+		    	<button type="submit" onclick="checkAlias()" > HIDE!</button>
+		
 		  	</div>
 	  	</div>
 	  	<div id="map-canvas"></div>
@@ -79,10 +81,21 @@
 			<div id="testing">Testing-lista: </div>
   		</div><!-- Content -->
   	
-  	</div><!-- Page x -->
+  	</div>
+
+
+
+  	<div data-role="page" id="page-hidden">
+	  	<div data-role="header">		
+	  		<h1>Hidden</h1>
+			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+		</div>
+	  	
+	  	<div data-role="content">
+			<h1>You are now hidden</h1> 
+			<button onclick="deletePerson()">Found</button>
+  		</div><!-- Content -->
   	
-  <!-- /MALL FÖR KOMPASS -->
-
-
+  	</div>
   </body>
 </html>
