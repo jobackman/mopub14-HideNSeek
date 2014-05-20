@@ -28,6 +28,10 @@
         
     	<!-- Mobile App-->    
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
+
+
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     
 
   </head>
@@ -41,21 +45,24 @@
   
 	<div data-role="page" id="home">
 	
-		<div data-role="header">		
+		<div data-role="header" data-theme="b">		
 	  		<h1>Hide N Seek!</h1>
-			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right" >Home</a>
-			<a href="#page-newGame" data-icon="plus" data-theme="a" class="ui-btn-left" >New</a>
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right" >Home</a>
+			<a href="#page-newGame" data-icon="plus" data-theme="b" class="ui-btn-left" >New</a>
 		</div><!-- header -->
 	
 		<h1>Hide N Seek!</h1>
 	  	<div class="row">
 		  	<div class="col-md-4">
-			<input placeholder="Your alias" id="alias"> </input>
-		    	<a href="#page-findSeekGame"><button type="submit" onclick="updateGames()"> SEEK! </button></a>
-		    	<a href="#page-findHideGame"><button type="submit" onclick="updateGames()"> HIDE!</button></a>
+			<input placeholder="Your alias" id="alias" data-theme="b"> </input>
+		    	<a href="#page-findSeekGame"><button type="submit" data-theme="b"onclick="updateGames()"> SEEK! </button></a>
+		    	<a href="#page-findHideGame"><button type="submit" data-theme="b" onclick="updateGames()"> HIDE!</button></a>
 			
 		
 		  	</div>
+	  	</div>
+	  	<div id='techpics'>
+	  		<img id="techring" src="img/techring.png"/>
 	  	</div>
 	  	<div id="map-canvas"></div>
 	</div>
@@ -74,9 +81,9 @@
 			});
 		</script>
   		
-	  	<div data-role="header">		
+	  	<div data-role="header" data-theme="b">		
 	  		<h1>Hide N Seek</h1>
-			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right">Home</a>
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a>
 		</div><!-- header -->
 	  	
 	  	<div data-role="content">
@@ -106,15 +113,15 @@
 
 
   	<div data-role="page" id="page-hidden">
-	  	<div data-role="header">		
+	  	<div data-role="header" data-theme="b">		
 	  		<h1>Hidden</h1>
-			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
 	  	
 	  	<div data-role="content">
 			<h1>You are hidden</h1>
 			<div id="hiddenGame"></div> 
-			<button onclick="deletePerson()">Found</button>
+			<button data-theme="b" onclick="deletePerson()">Found</button>
   		</div><!-- Content -->
   	
   	</div>
@@ -122,13 +129,13 @@
 
 
 	<div data-role="page" id="page-findSeekGame">
-	  	<div data-role="header">		
+	  	<div data-role="header" data-theme="b">		
 	  		<h1>Find Game</h1>
-			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
-		<select id="activeSeekGames">
+		<select id="activeSeekGames" data-theme="b" >
 		</select>
-		<a href="#page-x"><button onclick="getDistance()">Enter</button></a>
+		<a href="#page-x"><button data-theme="b" onclick="getDistance()">Enter</button></a>
 	  	
 	  	<div data-role="content">
 
@@ -140,13 +147,13 @@
 
 
 	<div data-role="page" id="page-findHideGame">
-	  	<div data-role="header">		
+	  	<div data-role="header" data-theme="b">		
 	  		<h1>Find Game</h1>
-			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
-		<select id="activeHideGames">
+		<select id="activeHideGames" data-theme="b">
 		</select>
-		<button onclick="checkAlias()">Enter</button>
+		<button data-theme="b" onclick="checkAlias()">Enter</button>
 	  	
 	  	<div data-role="content">
 
@@ -156,15 +163,15 @@
 
 
 	<div data-role="page" id="page-newGame">
-	  	<div data-role="header">		
+	  	<div data-role="header" data-theme="b">		
 	  		<h1>New game</h1>
-			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
 	  	
 	  	<div data-role="content">
 			<h1>Name:</h1>
-			<input placeholder="Enter the name"id="gameName"></input>
-			<button type="submit" onclick="createGame()">Create</button> 
+			<input placeholder="Enter the name" data-theme="b" id="gameName"></input>
+			<button type="submit" data-theme="b" onclick="createGame()">Create</button> 
 			
 			
   		</div><!-- Content -->
