@@ -42,7 +42,6 @@ helper.searchDocuments(
 	document.location.href="#page-hidden";
 }
 });
-
 }
 
 function checkAlias(){
@@ -72,6 +71,10 @@ function checkAlias(){
 }
 
 
+function refresh() {
+	document.location.href="index.html";
+
+};
 
 function addPerson(alias){
 
@@ -131,7 +134,7 @@ function addPerson(alias){
 							}else{
 								var person = new google.maps.LatLng(resp.outputData[k].lat_coords, resp.outputData[k].lng_coords);
 								
-								if (getDistance(user,person)>30){ //Ska vi köra tio meter?
+								if (getDistance(user,person)>15){ 
 									k=k+1;
 								}
 							}
@@ -229,8 +232,8 @@ function getDistance(){
 			}			
 				//$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
 				if (window.peopleList[0] != undefined){
-					resize(window.peopleList[0].distance.toFixed(2));
-					$("#distance").text(window.peopleList[0].distance.toFixed(2));
+					resize(window.peopleList[window.personNum].distance.toFixed(2));
+					$("#distance").text(window.peopleList[window.personNum].distance.toFixed(2));
 				}else{
 					navigator.geolocation.clearWatch(watcher);
 					document.location.href="#home";
@@ -243,23 +246,26 @@ function getDistance(){
 }
 
 function deleteGame(){
-var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
-helper.setPassword(hex_md5("mopub_14"));
-new_object={};
-helper.updateDocument(new_object, {"game":$("#activeSeekGames :selected").text()}, "games",null, function(resp){
-console.log("spelet borttaget");
-});
-
-helper.searchDocuments(
-	{"game":$("#activeSeekGames :selected").text()}, "people", function(resp){
-	for (var i=0; i<resp.outputData.length;i++){
-		
-		helper.updateDocument(new_object, {"alias":resp.outputData[i].alias}, "people",null, function(resp){
-		console.log("spelare borttagen");
+	if(confirm("Delete game?")){
+	
+		var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
+		helper.setPassword(hex_md5("mopub_14"));
+		new_object={};
+		helper.updateDocument(new_object, {"game":$("#activeSeekGames :selected").text()}, "games",null, function(resp){
+			console.log("spelet borttaget");
 		});
-	}
+
+		helper.searchDocuments(
+			{"game":$("#activeSeekGames :selected").text()}, "people", function(resp){
+				for (var i=0; i<resp.outputData.length;i++){
+		
+					helper.updateDocument(new_object, {"alias":resp.outputData[i].alias}, "people",null, function(resp){
+						console.log("spelare borttagen");
+					});
+				}
 	
 	});
+}
 
 }
 

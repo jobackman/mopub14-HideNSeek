@@ -10,6 +10,9 @@
 	
 	margin: 0 auto;
 }
+#map-canvas{
+	display:none;
+}
 
 a:hover{
 	text-decoration: none !important;

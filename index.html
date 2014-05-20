@@ -12,9 +12,10 @@
 	<script type="text/javascript" charset="utf-8" src="script/js/CBHelper/platforms/GenericHelper.js"></script>
 
     <!-- Iconen till hehmskärmen -->
-<link rel="icon" href="img/techring.jpg" />
+	<link rel="icon" href="img/techring.jpg" />
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/techring.jpg" />
-    	<!-- Google Maps API V3-->
+    
+		<!-- Google Maps API V3-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJd9s0q7Ac8IGZ7AXzYT3dpfplXxgEVpA&sensor=true&libraries=geometry"></script>
     
     	<!-- Bootstrap CSS -->
@@ -30,6 +31,7 @@
         
     	<!-- Mobile App-->    
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
+<meta name="apple-mobile-web-app-title" content="S&D">
 	<script type="text/javascript">
 		function blockMove() {
 	   	  event.preventDefault();
@@ -96,7 +98,7 @@
   		
 	  	<div data-role="header" data-theme="b">		
 	  		<h1>S&D</h1>
-			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a>
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right" onclick="refresh()" >Home</a>
 			<a href="#home" data-icon="delete" data-theme="b" class="ui-btn-left" onclick="deleteGame()">End</a>
 		</div><!-- header -->
 	  	
@@ -145,7 +147,7 @@
 	<div data-role="page" id="page-findSeekGame">
 	  	<div data-role="header" data-theme="b">		
 	  		<h1>Select Game</h1>
-			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right" onclick="refresh()">Home</a> <!-- anropa ta bort -->
 		</div>
 	  	
 	  	<div data-role="content">
@@ -165,7 +167,7 @@
 	<div data-role="page" id="page-findHideGame">
 	  	<div data-role="header" data-theme="b">		
 	  		<h1>Select Game</h1>
-			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right" onclick="refresh()">Home</a> <!-- anropa ta bort -->
 		</div>
 
 	  	
@@ -187,7 +189,7 @@
 	<div data-role="page" id="page-newGame">
 	  	<div data-role="header" data-theme="b">		
 	  		<h1>New game</h1>
-			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right" onclick="refresh()">Home</a> <!-- anropa ta bort -->
 		</div>
 	  	
 	  	<div data-role="content">
