@@ -64,12 +64,16 @@ body {
 	background-image:url('../img/metal2.png')!important;
 
 	background-repeat: repeat!important;
-	font-family: 'Raleway', sans-serif !important;
+	font-family: 'Orbitron', sans-serif !important;
 	color: white !important;
 }
 
 body h1{
 	color: white !important;
+}
+
+body, input, select, textarea, button, .ui-btn{
+	font-family: 'Orbitron', sans-serif !important;
 }
 
 .ui-page-theme-b .ui-btn, html .ui-bar-b .ui-btn, html .ui-body-b .ui-btn, html body .ui-group-theme-b .ui-btn, html head+body .ui-btn.ui-btn-b, .ui-page-theme-b .ui-btn:visited, html .ui-bar-b .ui-btn:visited, html .ui-body-b .ui-btn:visited, html body .ui-group-theme-b .ui-btn:visited, html head+body .ui-btn.ui-btn-b:visited{
@@ -88,4 +92,9 @@ body h1{
 	background-repeat: repeat !important;
 	background-size: 100%;
 	padding-bottom: 50px;
+}
+
+img#logo{
+	margin-left:11%;
+
 }
