@@ -194,7 +194,7 @@ function getDistance(){
 		var my_lat=position.coords.latitude;
 		var my_lng=position.coords.longitude;
 		var my_LatLng = new google.maps.LatLng(my_lat, my_lng);
-		$("#distance").text(my_LatLng);
+		
 		
 		
 		var rad = function(x) {
@@ -229,10 +229,11 @@ function getDistance(){
 				//$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
 				if (window.peopleList[0] != undefined){
 					resize(window.peopleList[0].distance.toFixed(2));
+					$("#distance").text(window.peopleList[0].distance.toFixed(2));
 				}else{
 					navigator.geolocation.clearWatch(watcher);
 					document.location.href="#home";
-					$("#noplayers").stop().slideDown(600).delay(500).slideUp(600);
+					$("#noplayers").stop().slideDown(600).delay(2000).slideUp(600);
 				}
 			
 			}
@@ -292,8 +293,9 @@ if ($("#gameName").val().length==0){
 				}
 				
 				helper.insertDocument("games", game, null, function(resp) {
-					alert("The game is now created");
+					
 					document.location.href="#home";
+					$("#gameCreated").stop().slideDown(600).delay(2000).slideUp(600);
 				});
 			}
 			

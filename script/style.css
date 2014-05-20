@@ -10,7 +10,11 @@
 	
 	margin: 0 auto;
 }
-
+.alert-success {
+	background-color: #48a69c !important;
+	border-color: #d6e9c6;
+	color: #000 !important;
+}
 #distance {
 	margin: 0 auto;
 	text-align: center;

@@ -52,7 +52,7 @@
 	
 		<div data-role="header" data-theme="b">		
 	  		<h1>S&D</h1>
-			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right" >Home</a>
+			<a onclick="document.location.reload(true)" data-icon="refresh" data-theme="b" class="ui-btn-right">Refresh</a>
 			<a href="#page-newGame" data-icon="plus" data-theme="b" class="ui-btn-left" >New</a>
 		</div><!-- header -->
 	
@@ -64,7 +64,8 @@
 			    	<a href="#page-findSeekGame"><button type="submit" data-theme="b" onclick="updateGames()"> SEEK! </button></a>
 			    	<a href="#page-findHideGame"><button type="submit" data-theme="b" onclick="updateGames()"> HIDE!</button></a>
 			   		<!-- Alert msg-->
-				<p><div class="alert alert-info" id="noplayers"> <strong>Noone is hidden</strong></div></p>
+				<p><div class="alert alert-danger" id="noplayers"> <strong>No one is hiding!</strong></div></p>
+				<p><div class="alert alert-success" id="gameCreated"> <strong>Game Created</strong></div></p>
 	
 			</div>
 	  	</div>
@@ -91,7 +92,7 @@
 	  	<div data-role="header" data-theme="b">		
 	  		<h1>S&D</h1>
 			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a>
-			<a href="#home" data-icon="delete" data-theme="b" class="ui-btn-left" onclick="deleteGame()">End game</a>
+			<a href="#home" data-icon="delete" data-theme="b" class="ui-btn-left" onclick="deleteGame()">End</a>
 		</div><!-- header -->
 	  	
 	  	<div data-role="content">
@@ -123,11 +124,11 @@
   	<div data-role="page" id="page-hidden">
 	  	<div data-role="header" data-theme="b">		
 	  		<h1>Hidden</h1>
-			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
+			
 		</div>
 	  	
 	  	<div data-role="content">
-			<h1>You are hidden</h1>
+			<h1 id="hiddenMessage">You are hidden</h1>
 			<div id="hiddenGame"></div> 
 			<button data-theme="b" onclick="deletePerson()">Found</button>
   		</div><!-- Content -->
@@ -138,7 +139,7 @@
 
 	<div data-role="page" id="page-findSeekGame">
 	  	<div data-role="header" data-theme="b">		
-	  		<h1>Find Game</h1>
+	  		<h1>Select Game</h1>
 			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
 		
@@ -159,7 +160,7 @@
 
 	<div data-role="page" id="page-findHideGame">
 	  	<div data-role="header" data-theme="b">		
-	  		<h1>Find Game</h1>
+	  		<h1>Select Game</h1>
 			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
 		<select id="activeHideGames" data-theme="b">
