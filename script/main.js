@@ -13,7 +13,7 @@ function initialize() {
 
 
 function updateGames() {
-var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
+var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
 helper.setPassword(hex_md5("mopub_14"));
 	$("#activeSeekGames").empty();
 	$("#activeHideGames").empty();
@@ -39,7 +39,7 @@ helper.searchDocuments(
 }
 
 function checkAlias(){
-	var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
+	var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
 	helper.setPassword(hex_md5("mopub_14"));
 if ($("#alias").val().length != 0){
 	
@@ -76,7 +76,7 @@ function addPerson(alias){
   
   	function showPosition(position){
  	
-  		var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
+  		var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
 		helper.setPassword(hex_md5("mopub_14"));
 		
 
@@ -144,7 +144,7 @@ function addPerson(alias){
 	}
 };
 function deletePerson() {
-	var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
+	var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
 	helper.setPassword(hex_md5("mopub_14"));
 	console.log("ska ta bort ....");
 	new_object={};
@@ -172,7 +172,7 @@ function resize(dist) {
 }
 
 function getDistance(){
-	var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
+	var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
 	helper.setPassword(hex_md5("mopub_14"));
 	
 	if (navigator.geolocation){
@@ -239,7 +239,7 @@ function getDistance(){
 
 function createGame(){
 
-	var helper = new CBHelper("benchpress", "37ff338f77e39490bad736e64bdd5839", new GenericHelper());
+	var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
 	helper.setPassword(hex_md5("mopub_14"));
 	
 if ($("#gameName").val().length==0){
