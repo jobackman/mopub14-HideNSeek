@@ -177,7 +177,7 @@ function getDistance(){
 	
 	if (navigator.geolocation){
 
-    	navigator.geolocation.watchPosition(showPosition);
+    	 var watcher=navigator.geolocation.watchPosition(showPosition);
     }
   	else{
 		alert("Geolocation is not supported by this browser.");
@@ -227,6 +227,7 @@ function getDistance(){
 				if (window.peopleList[0] != undefined){
 					resize(window.peopleList[0].distance.toFixed(2));
 				}else{
+					navigator.geolocation.clearWatch(watcher);
 					alert("NO");
 					document.location.href="#home";
 				}
