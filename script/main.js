@@ -26,11 +26,14 @@ if(resp_p.callStatus && resp_p.outputData.length==0){
 helper.searchDocuments(
 	null, "games", function(resp){
 		for (var i = 0; i<resp.outputData.length; i++){
+			if(resp.outputData[i].length!=0){
 			$("#activeSeekGames").append("<option value='"+resp.outputData[i].reference+"'>"+resp.outputData[i].game+"</option>");
 			$("#activeHideGames").append("<option value='"+resp.outputData[i].reference+"'>"+resp.outputData[i].game+"</option>");
 		}
+		}
 	});
 }else{
+	$("#hiddenGame").empty();
 	$("#hiddenGame").append("<p>Game:"+resp_p.outputData[0].game+"</p>")
 	document.location.href="#page-hidden";
 }
@@ -154,7 +157,7 @@ function deletePerson() {
 		});
 }
 function resize(dist) {
-	var size=(100/(1+dist*0.1));
+	var size=(100/(1+dist*0.02));
 	console.log(size);
 	if (size < 10){
 		size = 10;
@@ -185,6 +188,7 @@ function getDistance(){
 		var my_lat=position.coords.latitude;
 		var my_lng=position.coords.longitude;
 		var my_LatLng = new google.maps.LatLng(my_lat, my_lng);
+		$("#distance").text(my_LatLng);
 		
 		
 		var rad = function(x) {
@@ -227,6 +231,18 @@ function getDistance(){
 			}
 		);
 	}	
+}
+
+function deleteGame(){
+var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
+helper.setPassword(hex_md5("mopub_14"));
+new_object={};
+helper.updateDocument(new_object, {"game":$("#activeSeekGames :selected").text()}, "games",null, function(resp){
+console.log("spelet borttaget");
+});
+helper.updateDocument(new_object, {"game":$("#activeSeekGames :selected").text()}, "people",null, function(resp){
+console.log("spelare borttagen");
+});
 }
 
 
