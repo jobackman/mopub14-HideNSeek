@@ -10,6 +10,10 @@
 	
 	margin: 0 auto;
 }
+
+a:hover{
+	text-decoration: none !important;
+}
 .alert-success {
 	background-color: #48a69c !important;
 	border-color: #d6e9c6;
