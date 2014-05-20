@@ -20,6 +20,10 @@
 	display: inline-block;
 }
 
+.alert{
+	display: none;
+}
+
 #msg {
 	display: none;
 	text-align: center;

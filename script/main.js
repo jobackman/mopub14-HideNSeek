@@ -47,24 +47,27 @@ helper.searchDocuments(
 function checkAlias(){
 	var helper = new CBHelper("hns", "31cee8082535fe8efc37f8fcee62bed0", new GenericHelper());
 	helper.setPassword(hex_md5("mopub_14"));
-if ($("#alias").val().length != 0){
-	
-	
-	helper.searchDocuments(
-		{"alias":$("#alias").val()}, "people", function(resp){
-			
-			
-			if(resp.callStatus && resp.outputData.length==0){
-				addPerson($("#alias").val());
-			}
-			else{
-				alert("Alias is already taken")
-			}
+	if ($("#alias").val().length != 0){
 		
-		});
-}else{
-	alert("You have to pick an alias!");
-}	
+		
+		helper.searchDocuments(
+			{
+			"alias":$("#alias").val()}, "people", function(resp){
+				
+				
+				if(resp.callStatus && resp.outputData.length==0){
+					addPerson($("#alias").val());
+				}
+				else{
+					alert("Alias is already taken")
+				}
+			
+			});
+	}
+	else {
+			$("#noalias").stop().slideDown(600).delay(1000).slideUp(600);
+	
+	}	
 }
 
 
@@ -228,8 +231,8 @@ function getDistance(){
 					resize(window.peopleList[0].distance.toFixed(2));
 				}else{
 					navigator.geolocation.clearWatch(watcher);
-					alert("NO");
 					document.location.href="#home";
+					$("#noplayers").stop().slideDown(600).delay(500).slideUp(600);
 				}
 			
 			}
