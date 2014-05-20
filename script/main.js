@@ -162,12 +162,6 @@ function resize(dist) {
 	$("#arrow").css({ 
 		'width' : size+'%',
 		'height' : size+'%'
-	
-	/*	'-webkit-transform': 'resize('+degrees+'deg)',
-		'-moz-transform': 'resize('+degrees+'deg)',
-		'-o-transform': 'resize('+degrees+'deg)',
-		'-ms-transform': 'resize('+degrees+'deg)',
-		'transform': 'resize('+degrees+'deg)' */
 		});
 }
 
@@ -280,23 +274,41 @@ if ($("#gameName").val().length==0){
 function newPerson(){
 	if(window.personNum<parseInt(window.peopleList.length-1)){
 		
+		
 		window.personNum=window.personNum+1;
 
 		$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
+		
+		var prog = 100 * (personNum / peopleList.length  + 1/peopleList.length);
+		
+		$("#progress").css({
+			'width': prog + '%'
+		});
+		
+		$("#pnr").html(1+personNum);
+				
 
 		resize(window.peopleList[window.personNum].distance.toFixed(2));
 	}
 	else{
-		alert("Inga fler gömda");
+		$("#msg").stop().slideDown(600).delay(500).slideUp(600);
 	}
 };
 function oldPerson(){
 	if(window.personNum!=0){
 		window.personNum=window.personNum-1;
 		$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));	
+		
+		var prog = 100 * (personNum / peopleList.length  + 1 / peopleList.length);
+		
+		$("#progress").css({
+			'width': prog + '%'
+		});
+		$("#pnr").html(1+personNum);
+		
 		resize(window.peopleList[window.personNum].distance.toFixed(2));
 		
 	}else{
-		alert("Swipe:a inte, det finns inga fler!")
+		$("#msg").stop().slideDown(600).delay(500).slideUp(600);
 	}	
 };

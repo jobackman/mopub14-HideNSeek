@@ -7,8 +7,27 @@
 	-webkit-transition: all 1s ease;
 	-o-transition: all 1s ease;
 	transition: all 1s ease;
+	
+	margin: 0 auto;
 }
 
 #distance {
+	margin: 0 auto;
+	text-align: center;
 }
 
+#feedback {
+	display: inline-block;
+}
+
+#msg {
+	display: none;
+	text-align: center;
+}
+#footer {
+  position: absolute;
+  left: 5;
+  bottom: 0;
+  text-align: center;
+  width: 90%;
+}

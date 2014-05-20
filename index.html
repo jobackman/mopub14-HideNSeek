@@ -26,7 +26,9 @@
     <link rel="stylesheet" href="script/jqMobile/jquery.mobile-1.4.2.min.css">
     <script src="script/jqMobile/jquery.mobile-1.4.2.min.js"></script>
         
-
+    	<!-- Mobile App-->    
+    <meta name="apple-mobile-web-app-capable" content="yes" /> 
+    
 
   </head>
   
@@ -42,7 +44,7 @@
 		<div data-role="header">		
 	  		<h1>Hide N Seek!</h1>
 			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right" >Home</a>
-			<a href="#page-newGame" data-icon="gear" data-theme="a" class="ui-btn-left" >CNG</a>
+			<a href="#page-newGame" data-icon="plus" data-theme="a" class="ui-btn-left" >New</a>
 		</div><!-- header -->
 	
 		<h1>Hide N Seek!</h1>
@@ -73,15 +75,31 @@
 		</script>
   		
 	  	<div data-role="header">		
-	  		<h1>Bench Press</h1>
+	  		<h1>Hide N Seek</h1>
 			<a href="#home" data-icon="home" data-theme="a" class="ui-btn-right">Home</a>
 		</div><!-- header -->
 	  	
 	  	<div data-role="content">
 	  		<img src="img/arrow.png" id="arrow" onclick="getDistance()" draggable="false">
-			<h1>Distance: <b id="distance"> xx </b>m </h1>	
-			<div id="testing">Testing-lista: </div>
-  		</div>
+			
+			<!-- Alert msg-->
+			<p><div class="alert alert-info" id="msg"> <strong>There are no more</strong></div></p>
+			
+			<div id="footer">
+				<div class="row" id="feedback">
+					<span class="glyphicon glyphicon-chevron-left" id="left" ></span>
+					<span class="glyphicon glyphicon-chevron-right" id="right" ></span>
+				</div>
+				<h1><b id="distance"> xx </b>m </h1>
+				
+				<div class="progress">
+					<div class="progress-bar" id="progress" role="progressbar" aria-valuenow="0" 
+						aria-valuemin="0" aria-valuemax="100" style="width: 5%;">	
+						<p id="pnr">1</p>
+					</div>
+				</div>	
+			</div>
+	  	</div>
   	
   	</div>
 
