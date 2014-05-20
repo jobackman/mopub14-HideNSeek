@@ -139,7 +139,7 @@ function addPerson(alias){
 							add(dataObject);
 						}
 						else{
-							alert("You are too close to another player, MOVE!")
+							$("#tooclose").stop().slideDown(600).delay(1500).slideUp(600);
 						}
 					});
 				
@@ -270,7 +270,7 @@ function createGame(){
 	helper.setPassword(hex_md5("mopub_14"));
 	
 if ($("#gameName").val().length==0){
-	alert("Plesae enter at name,... ffs")
+		$("#needname").stop().slideDown(600).delay(1000).slideUp(600);
 }else{
 	helper.searchDocuments(
 		{"game":$("#gameName").val()}, "people", function(resp){

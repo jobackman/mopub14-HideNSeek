@@ -56,22 +56,25 @@
 			<a href="#page-newGame" data-icon="plus" data-theme="b" class="ui-btn-left" >New</a>
 		</div><!-- header -->
 	
-		<img id='logo' src='img/logo.png'>
-	  	<div class="row">
-	  	
-	  		<div class="col-md-12">
-				<input placeholder="Choose an Alias" id="alias" data-theme="b"> </input>
-			    	<a href="#page-findSeekGame"><button type="submit" data-theme="b" onclick="updateGames()"> SEEK! </button></a>
-			    	<a href="#page-findHideGame"><button type="submit" data-theme="b" onclick="updateGames()"> HIDE!</button></a>
-			   		<!-- Alert msg-->
-				<p><div class="alert alert-danger" id="noplayers"> <strong>No one is hiding!</strong></div></p>
-				<p><div class="alert alert-success" id="gameCreated"> <strong>Game Created</strong></div></p>
+		<div data-role="content">
 	
-			</div>
-	  	</div>
-	  	<div id='techpics'>
-	  		<img id="techring" src="img/techring.png"/>
-	  	</div>
+			<img id='logo' src='img/logo.png'>
+		  	<div class="row">
+		  	
+		  		<div class="col-md-12">
+					<input placeholder="Choose an Alias" id="alias" data-theme="b"> </input>
+				    	<a href="#page-findSeekGame"><button type="submit" data-theme="b" onclick="updateGames()"> SEEK! </button></a>
+				    	<a href="#page-findHideGame"><button type="submit" data-theme="b" onclick="updateGames()"> HIDE!</button></a>
+				   		<!-- Alert msg-->
+					<p><div class="alert alert-danger" id="noplayers"> <strong>No one is hiding!</strong></div></p>
+					<p><div class="alert alert-success" id="gameCreated"> <strong>Game Created</strong></div></p>
+		
+				</div>
+		  	</div>
+		  	<div id='techpics'>
+		  		<img id="techring" src="img/techring.png"/>
+		  	</div>
+		  </div>
 	  	<div id="map-canvas"></div>
 	</div>
 	
@@ -142,15 +145,14 @@
 	  		<h1>Select Game</h1>
 			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
-		
-		<select id="activeSeekGames" data-theme="b" >
-			
-		</select>
-		
-		<a href="#page-x"><button data-theme="b" onclick="getDistance()">Enter</button></a>
 	  	
 	  	<div data-role="content">
-
+	  	
+		  	<select id="activeSeekGames" data-theme="b" >
+			</select>
+			
+			<a href="#page-x"><button data-theme="b" onclick="getDistance()">Enter</button></a>
+		  	
   		</div><!-- Content -->
   	</div>
 
@@ -163,15 +165,17 @@
 	  		<h1>Select Game</h1>
 			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
-		<select id="activeHideGames" data-theme="b">
-		</select>
-		<button data-theme="b" onclick="checkAlias()">Enter</button>
-		
-			<!-- Alert msg-->
-		<p><div class="alert alert-info" id="noalias"> <strong>You have no Alias</strong></div></p>
 
 	  	
 	  	<div data-role="content">
+		  	<select id="activeHideGames" data-theme="b">
+			</select>
+			<button data-theme="b" onclick="checkAlias()">Enter</button>
+			
+				<!-- Alert msg-->
+			<p><div class="alert alert-info" id="noalias"> <strong>You have no Alias</strong></div></p>
+				<!-- Alert msg-->
+			<p><div class="alert alert-danger" id="tooclose"> <strong>Too close to another player</strong></div></p>
 
   		</div><!-- Content -->
   	</div>
@@ -188,6 +192,9 @@
 			<h1>Name:</h1>
 			<input placeholder="Enter the name" data-theme="b" id="gameName"></input>
 			<button type="submit" data-theme="b" onclick="createGame()">Create</button> 
+			
+				<!-- Alert msg-->
+			<p><div class="alert alert-danger" id="needname"> <strong>The game needs a name</strong></div></p>
 			
 			
   		</div><!-- Content -->
