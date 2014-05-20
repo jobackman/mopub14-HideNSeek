@@ -31,7 +31,7 @@
 
 
     <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
     
 
   </head>
@@ -51,7 +51,7 @@
 			<a href="#page-newGame" data-icon="plus" data-theme="b" class="ui-btn-left" >New</a>
 		</div><!-- header -->
 	
-		<h1>Hide N Seek!</h1>
+		<img id='logo' src='img/logo.png'>
 	  	<div class="row">
 		  	<div class="col-md-4">
 			<input placeholder="Your alias" id="alias" data-theme="b"> </input>
@@ -84,6 +84,7 @@
 	  	<div data-role="header" data-theme="b">		
 	  		<h1>Hide N Seek</h1>
 			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a>
+			<a href="#home" data-icon="delete" data-theme="b" class="ui-btn-left" onclick="deleteGame()">End game</a>
 		</div><!-- header -->
 	  	
 	  	<div data-role="content">
@@ -133,8 +134,11 @@
 	  		<h1>Find Game</h1>
 			<a href="#home" data-icon="home" data-theme="b" class="ui-btn-right">Home</a> <!-- anropa ta bort -->
 		</div>
+		
 		<select id="activeSeekGames" data-theme="b" >
+			
 		</select>
+		
 		<a href="#page-x"><button data-theme="b" onclick="getDistance()">Enter</button></a>
 	  	
 	  	<div data-role="content">

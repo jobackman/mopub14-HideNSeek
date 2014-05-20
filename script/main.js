@@ -25,8 +25,11 @@ if(resp_p.callStatus && resp_p.outputData.length==0){
 		
 helper.searchDocuments(
 	null, "games", function(resp){
+		$("#activeSeekGames").append("<option value='' disabled selected>Game</option>");
+		$("#activeHideGames").append("<option value='' disabled selected>Game</option>");
 		for (var i = 0; i<resp.outputData.length; i++){
 			if(resp.outputData[i].length!=0){
+				
 			$("#activeSeekGames").append("<option value='"+resp.outputData[i].reference+"'>"+resp.outputData[i].game+"</option>");
 			$("#activeHideGames").append("<option value='"+resp.outputData[i].reference+"'>"+resp.outputData[i].game+"</option>");
 		}
@@ -221,8 +224,8 @@ function getDistance(){
 				}
 			}			
 				//$("#distance").html(window.peopleList[window.personNum].distance.toFixed(2));
-				if (window.peopleList[window.personNum] != undefined){
-				resize(window.peopleList[window.personNum].distance.toFixed(2));
+				if (window.peopleList[0] != undefined){
+					resize(window.peopleList[0].distance.toFixed(2));
 				}else{
 					alert("NO");
 					document.location.href="#home";
@@ -240,9 +243,18 @@ new_object={};
 helper.updateDocument(new_object, {"game":$("#activeSeekGames :selected").text()}, "games",null, function(resp){
 console.log("spelet borttaget");
 });
-helper.updateDocument(new_object, {"game":$("#activeSeekGames :selected").text()}, "people",null, function(resp){
-console.log("spelare borttagen");
-});
+
+helper.searchDocuments(
+	{"game":$("#activeSeekGames :selected").text()}, "people", function(resp){
+	for (var i=0; i<resp.outputData.length;i++){
+		
+		helper.updateDocument(new_object, {"alias":resp.outputData[i].alias}, "people",null, function(resp){
+		console.log("spelare borttagen");
+		});
+	}
+	
+	});
+
 }
 
 
