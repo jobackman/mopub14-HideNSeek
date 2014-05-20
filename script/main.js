@@ -19,14 +19,15 @@ helper.setPassword(hex_md5("mopub_14"));
 	$("#activeHideGames").empty();
 	
 helper.searchDocuments(
-	{"alias": $("#alias").val()}	, "people", function(resp_p){
+	{"alias": $("#alias").val().toLowerCase()}	, "people", function(resp_p){
 if(resp_p.callStatus && resp_p.outputData.length==0){
 		
 		
 helper.searchDocuments(
 	null, "games", function(resp){
-		$("#activeSeekGames").append("<option value='' disabled selected>Game</option>");
-		$("#activeHideGames").append("<option value='' disabled selected>Game</option>");
+		$("#activeSeekGames").append("<option value='' disabled selected>Default</option>");
+		$("#activeHideGames").append("<option value='' disabled selected>Default</option>");
+		
 		for (var i = 0; i<resp.outputData.length; i++){
 			if(resp.outputData[i].length!=0){
 				
@@ -52,11 +53,11 @@ function checkAlias(){
 		
 		helper.searchDocuments(
 			{
-			"alias":$("#alias").val()}, "people", function(resp){
+			"alias":$("#alias").val().toLowerCase()}, "people", function(resp){
 				
 				
 				if(resp.callStatus && resp.outputData.length==0){
-					addPerson($("#alias").val());
+					addPerson($("#alias").val().toLowerCase());
 				}
 				else{
 					alert("Alias is already taken")
@@ -157,7 +158,7 @@ function deletePerson() {
 	helper.setPassword(hex_md5("mopub_14"));
 	console.log("ska ta bort ....");
 	new_object={};
-	helper.updateDocument(new_object, {"alias":$("#alias").val()}, "people",null, function(resp){
+	helper.updateDocument(new_object, {"alias":$("#alias").val().toLowerCase()}, "people",null, function(resp){
 	
 			document.location.href="#home";
 		});
